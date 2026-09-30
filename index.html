@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10930 Russwood Cir</title>
+<style>
+/* Layout: one centered column on a quiet ground — letterhead mark, address
+   headline, the footage itself, a file ledger, then a single action. */
+:root {
+  --bg: #eef1f4;
+  --surface: #ffffff;
+  --fg: #151a1f;
+  --muted: #5c6774;
+  --faint: #8b96a3;
+  --line: #dbe1e8;
+  --accent: #1b4f72;
+  --accent-hi: #16405e;
+  --accent-fg: #ffffff;
+  --shadow: 0 1px 2px rgba(21,26,31,.05), 0 8px 24px -12px rgba(21,26,31,.18);
+
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1317;
+    --surface: #171c22;
+    --fg: #e6ebf0;
+    --muted: #94a0ad;
+    --faint: #6d7985;
+    --line: #262d36;
+    --accent: #6ea8d8;
+    --accent-hi: #86bae6;
+    --accent-fg: #0b0f13;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1317;
+  --surface: #171c22;
+  --fg: #e6ebf0;
+  --muted: #94a0ad;
+  --faint: #6d7985;
+  --line: #262d36;
+  --accent: #6ea8d8;
+  --accent-hi: #86bae6;
+  --accent-fg: #0b0f13;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.page {
+  width: 100%;
+  max-width: 40rem;
+  padding-inline: 20px;
+  padding-block: clamp(2.5rem, 8vh, 5rem);
+}
+
+/* Letterhead: an abstract parcel outline, the way a plat sheet opens. */
+.mark {
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 1.625rem;
+  color: var(--accent);
+}
+
+.eyebrow {
+  margin: 0 0 .6rem;
+  font-size: .688rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 6vw, 2.375rem);
+  line-height: 1.12;
+  letter-spacing: -.021em;
+  font-weight: 640;
+  text-wrap: balance;
+}
+
+.locale {
+  margin: .45rem 0 0;
+  font-size: 1.0625rem;
+  color: var(--muted);
+}
+
+.card {
+  margin-top: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.player {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-bottom: 1px solid var(--line);
+}
+
+.ledger {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  background: var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1rem;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: .8125rem 1.25rem;
+  background: var(--surface);
+}
+
+.row dt {
+  margin: 0;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--faint);
+  flex: 0 0 auto;
+}
+
+.row dd {
+  margin: 0;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+.action { padding: 1.25rem; background: var(--surface); }
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  width: 100%;
+  padding: .9375rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .15s ease, transform .06s ease;
+}
+.btn:hover { background: var(--accent-hi); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.btn svg { flex: 0 0 auto; }
+
+.note {
+  margin: 1.5rem 0 0;
+  font-size: .8125rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.note code {
+  font-family: var(--font-mono);
+  font-size: .95em;
+  padding: .1em .35em;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+  .btn:active { transform: none; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <svg class="mark" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <path d="M3.5 12.5 22 3.5l18.5 9v22L22 40.5 3.5 31.5v-19Z"
+          stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" opacity=".45"/>
+    <path d="M11 17.5h22v13H11z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M11 17.5 22 11l11 6.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="22" cy="24.5" r="1.75" fill="currentColor"/>
+  </svg>
+
+  <p class="eyebrow">Inspection video</p>
+  <h1>10930 Russwood Cir</h1>
+  <p class="locale">Dallas, Texas</p>
+
+  <div class="card">
+
+    <video class="player" id="player" controls playsinline preload="metadata"
+           poster="data:image/jpeg;base64,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">
+      <source src="10930%20Russwood%20Cir%20Dallas%20TX.mp4" type="video/mp4">
+      Your browser cannot play this video. Use the download button below.
+    </video>
+
+    <dl class="ledger">
+      <div class="row">
+        <dt>File</dt>
+        <dd>10930 Russwood Cir Dallas TX.mp4</dd>
+      </div>
+      <div class="row">
+        <dt>Format</dt>
+        <dd>MP4 &middot; H.264 / AAC</dd>
+      </div>
+      <div class="row">
+        <dt>Size</dt>
+        <dd id="size-value">28.7 MB</dd>
+      </div>
+      <div class="row">
+        <dt>Duration</dt>
+        <dd>2:00</dd>
+      </div>
+      <div class="row">
+        <dt>Resolution</dt>
+        <dd>1280 &times; 720</dd>
+      </div>
+    </dl>
+
+    <div class="action">
+      <a class="btn" id="download"
+         href="10930%20Russwood%20Cir%20Dallas%20TX.mp4"
+         download="10930 Russwood Cir Dallas TX.mp4">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M9 2.25v9m0 0 3.5-3.5M9 11.25 5.5 7.75" stroke="currentColor"
+                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2.75 12.5v1.25a2 2 0 0 0 2 2h8.5a2 2 0 0 0 2-2V12.5" stroke="currentColor"
+                stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Download video
+      </a>
+    </div>
+
+  </div>
+
+  <p class="note">
+    Plays straight from this page &mdash; no download needed. The file is served from
+    this page&rsquo;s own directory as <code>10930 Russwood Cir Dallas TX.mp4</code>;
+    keep the two together when you move or host them.
+  </p>
+
+</main>
+
+<script>
+// The ledger ships with the real size in it, so the page reads correctly on a
+// file:// open. Over http(s) a HEAD request refreshes it, keeping the figure
+// honest if the video is ever replaced.
+(function () {
+  var href = document.getElementById('download').getAttribute('href');
+  if (!/^https?:$/.test(location.protocol)) return;
+
+  fetch(href, { method: 'HEAD' }).then(function (res) {
+    if (!res.ok) return;
+    var bytes = parseInt(res.headers.get('content-length'), 10);
+    if (!isFinite(bytes) || bytes <= 0) return;
+
+    var units = ['B', 'KB', 'MB', 'GB'], i = 0, n = bytes;
+    while (n >= 1024 && i < units.length - 1) { n /= 1024; i++; }
+
+    document.getElementById('size-value').textContent =
+      (i === 0 ? n : n.toFixed(n < 10 ? 1 : 0)) + ' ' + units[i];
+  }).catch(function () { /* keep the shipped figure */ });
+})();
+</script>
+</body>
+</html>
